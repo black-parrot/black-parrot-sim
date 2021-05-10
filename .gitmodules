@@ -1,0 +1,6 @@
+[submodule "rtl"]
+    path = rtl
+    url = https://github.com/black-parrot/black-parrot/
+[submodule "sdk"]
+	path = sdk
+	url = https://github.com/black-parrot-sdk/black-parrot-sdk
