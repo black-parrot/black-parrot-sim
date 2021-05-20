@@ -57,7 +57,7 @@ Ubuntu on Windows WSL 2.0 seems to work for most things, but you may encounter e
 
 ## Build the toolchains
     # Clone the latest repo
-    git clone https://github.com/black-parrot-sim/black-parrot-sim.git
+    git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
 
     # make prep is a meta-target which will build the RISC-V toolchains, programs and microcode
