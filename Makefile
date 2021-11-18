@@ -19,6 +19,7 @@ prep: prep_lite
 
 prep_bsg: prep
 	$(MAKE) -C $(BP_RTL_DIR) tools_bsg
+	$(MAKE) -C $(BP_SDK_DIR) prog
 
 ## This target just wipes the whole repo clean.
 #  Use with caution.
