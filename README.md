@@ -49,7 +49,7 @@ CentOS 7 requires a more modern gcc to build Linux. If you receive an error such
 
 cmake 3.14+ is required. This must be manually upgraded even on newer versions of Ubuntu.
 
-BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu for
+BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu 18.04 or 20.04 for
 development. If not on these versions of these OSes, we suggest using a
 Docker image.
 
