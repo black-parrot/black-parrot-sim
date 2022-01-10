@@ -45,7 +45,7 @@ CentOS 7 requires a more modern gcc to build Linux. If you receive an error such
 
 ### Ubuntu (18.04 or 20.04)
 
-    sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml
+    sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml python3-pip uuid-dev default-jre tcl
 
 cmake 3.14+ is required. This must be manually upgraded even on newer versions of Ubuntu.
 
