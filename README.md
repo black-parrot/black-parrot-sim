@@ -45,9 +45,9 @@ CentOS 7 requires a more modern gcc to build Linux. If you receive an error such
 
 ### Ubuntu (18.04 or 20.04)
 
-    sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml python3-pip uuid-dev default-jre tcl
+    sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml python3-pip uuid-dev default-jre tcl git
 
-cmake 3.14+ is required. This must be manually upgraded even on newer versions of Ubuntu.
+cmake 3.14+ is required. This must be manually upgraded even on newer versions of Ubuntu. If you see "cmake3 not found", try adding CMAKE=cmake to the make command
 
 BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu 18.04 or 20.04 for
 development. If not on these versions of these OSes, we suggest using a
