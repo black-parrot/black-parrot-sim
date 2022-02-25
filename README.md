@@ -35,22 +35,31 @@ This should output (roughly)
 
 # Getting started (Full)
 ## Prerequisites
-### Centos (7 or 8)
+### CentOS 7+
 
-    yum install autoconf automake libmpc-devel mpfr-devel gmp-devel gawk  bison flex texinfo patchutils gcc gcc-c++ zlib-devel expat-devel dtc gtkwave vim-common virtualenv
+    yum install autoconf automake libmpc-devel mpfr-devel gmp-devel gawk \
+                bison flex texinfo patchutils gcc gcc-c++ zlib-devel \
+                expat-devel dtc gtkwave vim-common virtualenv
 
-CentOS 7 requires a more modern gcc to build Linux. If you receive an error such as "These critical programs are missing or too old: make" try
+The default GCC package on CentOS 7+ is often too old to build some components. We suggest using
+[devtoolset-9](https://centos.pkgs.org/7/centos-sclo-rh-x86_64/devtoolset-9-9.0-3.el7.x86_64.rpm.html)
+to gain access to a more modern gcc.
 
-    scl enable devtoolset-8 bash
+    yum install centos-release-scl
+    yum install devtoolset-9
+    scl enable devtoolset-9 bash
+    # To automatically enable on new terminals, add "source scl_source enable devtoolset-9" to ~/.bashrc
 
-### Ubuntu (18.04 or 20.04)
+### Ubuntu
 
-    sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml python3-pip uuid-dev default-jre tcl git
+    sudo apt-get install autoconf automake autotools-dev curl libmpc-dev \
+                         libmpfr-dev libgmp-dev gawk build-essential bison \
+                         flex texinfo gperf libtool patchutils bc zlib1g-dev \
+                         libexpat-dev wget byacc device-tree-compiler python \
+                         gtkwave vim-common virtualenv python-yaml
 
-cmake 3.14+ is required. This must be manually upgraded even on newer versions of Ubuntu. If you see "cmake3 not found", try adding CMAKE=cmake to the make command
-
-BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu 18.04 or 20.04 for
-development. If not on these versions of these OSes, we suggest using a
+BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu for
+development. If not on a relatively recent version of these OSes, we suggest using a
 Docker image.
 
 Ubuntu on Windows WSL 2.0 seems to work for most things, but you may encounter errors with more complex operations. For instance, compiling Linux is known not to work in this environment. This is considered an experimental build.
@@ -64,6 +73,7 @@ Ubuntu on Windows WSL 2.0 seems to work for most things, but you may encounter e
     #   needed for a full BlackParrot evaluation setup.
     # Users who are changing code can use the 'libs' 'prog' or 'ucode' targets as appropriate
     # For faster builds, make prep -j is parallelizable!
+    # To get started as fast as possible, use 'make prep_lite' which installs a minimal set of tools
     # BSG users should instead use 'make prep_bsg', which sets up the bsg CAD environment
     make prep
 
