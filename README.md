@@ -49,6 +49,12 @@ to gain access to a more modern gcc.
     yum install devtoolset-9
     scl enable devtoolset-9 bash
     # To automatically enable on new terminals, add "source scl_source enable devtoolset-9" to ~/.bashrc
+    
+Similarly, the default git package of CentOS 7+ is often too old to execute even basic flows. We suggest using git2u available from IUS. The steps to install this are:
+
+    yum install https://centos7.iuscommunity.org/ius-release.rpm
+    yum install remove git*
+    yum install git2u-all
 
 ### Ubuntu
 
