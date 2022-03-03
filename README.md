@@ -63,6 +63,8 @@ Similarly, the default git package of CentOS 7+ is often too old to execute even
                          flex texinfo gperf libtool patchutils bc zlib1g-dev \
                          libexpat-dev wget byacc device-tree-compiler python \
                          gtkwave vim-common virtualenv python-yaml
+                         
+Recent versions of Ubuntu have changed the aliases for cmake. One can either use CMAKE=cmake3 while building tools or change this variable directly in the Makefiles.
 
 BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu for
 development. If not on a relatively recent version of these OSes, we suggest using a
