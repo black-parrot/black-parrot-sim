@@ -41,20 +41,15 @@ This should output (roughly)
                 bison flex texinfo patchutils gcc gcc-c++ zlib-devel \
                 expat-devel dtc gtkwave vim-common virtualenv
 
-The default GCC package on CentOS 7+ is often too old to build some components. We suggest using
-[devtoolset-9](https://centos.pkgs.org/7/centos-sclo-rh-x86_64/devtoolset-9-9.0-3.el7.x86_64.rpm.html)
-to gain access to a more modern gcc.
+On CentOS 7, some tools provided by the base repository are too old to satisfy the requirements.
+We suggest using the [Software Collections](https://wiki.centos.org/AdditionalResources/Repositories/SCL)
+(SCL) to obtain newer versions.
 
     yum install centos-release-scl
-    yum install devtoolset-9
-    scl enable devtoolset-9 bash
-    # To automatically enable on new terminals, add "source scl_source enable devtoolset-9" to ~/.bashrc
-    
-Similarly, the default git package of CentOS 7+ is often too old to execute even basic flows. We suggest using git2u available from IUS. The steps to install this are:
-
-    yum install https://centos7.iuscommunity.org/ius-release.rpm
-    yum install remove git*
-    yum install git2u-all
+    yum install devtoolset-9 rh-git218
+    scl enable devtoolset-9 rh-git218 bash
+    # To automatically enable on new terminals, add the following line to ~/.bashrc:
+    # source scl_source enable devtoolset-9 rh-git218
 
 ### Ubuntu
 
