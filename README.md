@@ -11,9 +11,7 @@ simulation environment, there's very little else in this repo.
 
 ### CentOS 7+
 
-    yum install autoconf automake libmpc-devel mpfr-devel gmp-devel gawk \
-                bison flex texinfo patchutils gcc gcc-c++ zlib-devel \
-                expat-devel dtc gtkwave vim-common virtualenv
+    yum install autoconf automake libmpc-devel mpfr-devel gmp-devel gawk bison flex texinfo patchutils gcc gcc-c++ zlib-devel expat-devel dtc gtkwave vim-common virtualenv
 
 On CentOS 7, some tools provided by the base repository are too old to satisfy the requirements.
 We suggest using the [Software Collections](https://wiki.centos.org/AdditionalResources/Repositories/SCL)
@@ -27,11 +25,7 @@ We suggest using the [Software Collections](https://wiki.centos.org/AdditionalRe
 
 ### Ubuntu
 
-    sudo apt-get install autoconf automake autotools-dev curl libmpc-dev \
-                         libmpfr-dev libgmp-dev gawk build-essential bison \
-                         flex texinfo gperf libtool patchutils bc zlib1g-dev \
-                         libexpat-dev wget byacc device-tree-compiler python \
-                         gtkwave vim-common virtualenv python-yaml
+    sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml
                          
 Recent versions of Ubuntu have changed the aliases for cmake. One can either use CMAKE=cmake3 while building tools or change this variable directly in the Makefiles.
 
