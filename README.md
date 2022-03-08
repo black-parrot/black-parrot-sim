@@ -20,8 +20,10 @@ We suggest using the [Software Collections](https://wiki.centos.org/AdditionalRe
     yum install centos-release-scl
     yum install devtoolset-9 rh-git218
     scl enable devtoolset-9 rh-git218 bash
-    # To automatically enable on new terminals, add the following line to ~/.bashrc:
-    # source scl_source enable devtoolset-9 rh-git218
+
+To automatically enable these tools on new terminals, add the following line to ~/.bashrc:
+
+    source scl_source enable devtoolset-9 rh-git218
 
 ### Ubuntu
 
