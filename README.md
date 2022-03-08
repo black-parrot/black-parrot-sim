@@ -11,19 +11,36 @@ simulation environment, there's very little else in this repo.
 
 ### CentOS 7+
 
-    yum install autoconf automake libmpc-devel mpfr-devel gmp-devel gawk bison flex texinfo patchutils gcc gcc-c++ zlib-devel expat-devel dtc gtkwave vim-common virtualenv
+To install most dependencies, execute the following command:
+
+    sudo yum install autoconf automake bash bc binutils bison bzip2 cpio dtc expat-devel file flex gawk gcc gcc-c++ gmp-devel gzip gtkwave java-1.8.0-openjdk-headless libmpc-devel libuuid-devel make mpfr-devel patch patchutils perl perl-ExtUtils-MakeMaker python3 python3-pip rsync sed tar tcl texinfo unzip vim-common virtualenv which zlib-devel
+
+We need the `orderedmultidict` Python package too, but it is not packaged for CentOS. Installing it from PyPI works:
+
+    pip install --user orderedmultidict
 
 On CentOS 7, some tools provided by the base repository are too old to satisfy the requirements.
 We suggest using the [Software Collections](https://wiki.centos.org/AdditionalResources/Repositories/SCL)
 (SCL) to obtain newer versions.
 
-    yum install centos-release-scl
-    yum install devtoolset-9 rh-git218
+    sudo yum install centos-release-scl
+    sudo yum install devtoolset-9 rh-git218
     scl enable devtoolset-9 rh-git218 bash
 
-To automatically enable these tools on new terminals, add the following line to ~/.bashrc:
+To automatically enable these tools from SCL on new terminals, add the following line to ~/.bashrc:
 
     source scl_source enable devtoolset-9 rh-git218
+
+Moreover, the `cmake` package on CentOS 7 is CMake 2 while we need CMake 3. We suggest installing CMake 3 from EPEL:
+
+    sudo yum install epel-release
+    sudo yum install cmake3
+
+Remember adding `CMAKE=cmake3` while building tools or changing the variable directly in `rtl/Makefile.tools` in that case.
+
+On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CMAKE=cmake3`:
+
+    sudo yum install cmake
 
 ### Ubuntu
 
