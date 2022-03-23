@@ -5,6 +5,34 @@ This repository is the main development meta-repository of the BlackParrot proce
 bleeding edge of the BlackParrot RTL and BlackParrot SDK repos. Because this is a low-level
 simulation environment, there's very little else in this repo.
 
+# Tire Kick
+
+Users who just want to test their setup and run a minimal BlackParrot test should run the following:
+
+    # Clone the latest repo
+    git clone https://github.com/black-parrot/black-parrot-sim.git
+    cd black-parrot-sim
+
+    # Install a minimal set of tools and libraries
+    # For faster builds, make prep_lite -j is parallelizable!
+    make prep_lite
+
+    # From here, most operations are handled from within the black-parrot repo
+    cd rtl
+
+    # Running your first test
+    make -C bp_top/syn tire_kick
+
+This should output (roughly)
+
+    Hello world!
+    [CORE0 FSH] PASS
+    [CORE0 STATS]
+        clk   :                  220
+        instr :                   66
+        mIPC  :                  300
+    All cores finished! Terminating...
+
 # Getting Started
 
 ## Prerequisites
@@ -36,8 +64,6 @@ Moreover, the `cmake` package on CentOS 7 is CMake 2 while we need CMake 3. We s
     sudo yum install epel-release
     sudo yum install cmake3
 
-Remember adding `CMAKE=cmake3` while building tools or changing the variable directly in `rtl/Makefile.tools` in that case.
-
 On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CMAKE=cmake3`:
 
     sudo yum install cmake
@@ -45,8 +71,6 @@ On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CM
 ### Ubuntu
 
     sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave vim-common virtualenv python-yaml
-                         
-Recent versions of Ubuntu have changed the aliases for cmake. One can either use CMAKE=cmake3 while building tools or change this variable directly in the Makefiles.
 
 BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu for
 development. If not on a relatively recent version of these OSes, we suggest using a
@@ -65,34 +89,6 @@ For a painless Ubuntu build, download and install [Docker Desktop](https://www.d
     docker-compose exec bp su - build
     
 Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd black-parrot-sim" or the "Full" directions below.  The repo directory will be mounted inside the container.
-
-## Tire Kick
-
-Users who just want to test their setup and run a minimal BlackParrot test should run the following:
-
-    # Clone the latest repo
-    git clone https://github.com/black-parrot/black-parrot-sim.git
-    cd black-parrot-sim
-
-    # Install a minimal set of tools and libraries
-    # For faster builds, make prep_lite -j is parallelizable!
-    make prep_lite
-
-    # From here, most operations are handled from within the black-parrot repo
-    cd rtl
-
-    # Running your first test
-    make -C bp_top/syn tire_kick
-
-This should output (roughly)
-
-    Hello world!
-    [CORE0 FSH] PASS
-    [CORE0 STATS]
-        clk   :                  220
-        instr :                   66
-        mIPC  :                  300
-    All cores finished! Terminating...
 
 ## Build the toolchains
 
