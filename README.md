@@ -74,7 +74,7 @@ Ubuntu on Windows WSL 2.0 seems to work for most things, but you may encounter e
 
     # make prep is a meta-target which will build the RISC-V toolchains, programs and microcode
     #   needed for a full BlackParrot evaluation setup.
-    # Users who are changing code can use the 'libs' 'prog' or 'ucode' targets as appropriate
+    # Users who are changing code can use the targets in tagged submodules as appropriate
     # For faster builds, make prep -j is parallelizable!
     # To get started as fast as possible, use 'make prep_lite' which installs a minimal set of tools
     # BSG users should instead use 'make prep_bsg', which sets up the bsg CAD environment

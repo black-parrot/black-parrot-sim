@@ -6,3 +6,6 @@
 	path = sdk
 	url = https://github.com/black-parrot-sdk/black-parrot-sdk
     ignore = dirty
+[submodule "tools"]
+	path = tools
+	url = https://github.com/black-parrot/black-parrot-tools
