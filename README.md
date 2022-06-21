@@ -5,6 +5,13 @@ This repository is the main development meta-repository of the BlackParrot proce
 bleeding edge of the BlackParrot RTL and BlackParrot SDK repos. Because this is a low-level
 simulation environment, there's very little else in this repo.
 
+# BlackParrot Repository Overview
+- **rtl/** contains the BlackParrot RTL and basic simulation testbench environment
+- **sdk/** contains the BlackParrot Software Development Kit. More details can be found in the SDK
+  README.md
+- **tools/** contains some open-source tools used to run basic BlackParrot simulations
+- **docker/** contains files needed for a Docker-based simulation environment
+
 # Tire Kick
 
 Users who just want to test their setup and run a minimal BlackParrot test should run the following:
@@ -84,9 +91,9 @@ For a painless Ubuntu build, download and install [Docker Desktop](https://www.d
 
     git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
-    docker-compose build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) bp
-    docker-compose up -d
-    docker-compose exec bp su - build
+    make -C docker docker-image docker-run
+    # An alternate flow using docker-compose
+    # make -C docker docker-compose
     
 Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd black-parrot-sim" or the "Full" directions below.  The repo directory will be mounted inside the container.
 
@@ -98,7 +105,7 @@ Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd blac
 
     # make prep is a meta-target which will build the RISC-V toolchains, programs and microcode
     #   needed for a full BlackParrot evaluation setup.
-    # Users who are changing code can use the 'libs' 'prog' or 'ucode' targets as appropriate
+    # Users who are changing code can use the targets in tagged submodules as appropriate
     # For faster builds, make prep -j is parallelizable!
     # To get started as fast as possible, use 'make prep_lite' which installs a minimal set of tools
     # BSG users should instead use 'make prep_bsg', which sets up the bsg CAD environment
@@ -114,8 +121,3 @@ Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd blac
 
 Additional documentation is available in the main BlackParrot repo, in the Simulation Guide:
 [BlackParrot](https://github.com/black-parrot/black-parrot)
-
-# BlackParrot Repository Overview
-- **rtl/** contains the BlackParrot RTL and basic simulation environment
-- **sdk/** contains the BlackParrot Software Development Kit. More details can be found in the SDK
-  README.md
