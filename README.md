@@ -95,9 +95,9 @@ For a painless Ubuntu build, download and install [Docker Desktop](https://www.d
 
     git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
-    docker-compose build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) bp
-    docker-compose up -d
-    docker-compose exec bp su - build
+    make -C docker docker-image docker-run
+    # An alternate flow using docker-compose
+    # make -C docker docker-compose
     
 Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd black-parrot-sim" or the "Full" directions below.  The repo directory will be mounted inside the container.
 
