@@ -8,12 +8,14 @@ RUN apt-get update
 # There are some potential work-arounds if that turns out to be a problem, but they didn't seem
 # to be worth the trouble
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y apt-utils tzdata git vim gettext-base \
+RUN apt-get install -y apt-utils tzdata git vim gettext-base uuid-dev default-jre \
         bash autoconf automake autotools-dev curl cmake libmpc-dev libmpfr-dev libgmp-dev gawk \
         build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev \
-        wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev
+        wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip
 
 RUN apt-get clean
+
+RUN pip install orderedmultidict
 
 ARG USER_ID
 ARG GROUP_ID
