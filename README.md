@@ -50,10 +50,6 @@ To install most dependencies, execute the following command:
 
     sudo yum install autoconf automake bash bc binutils bison bzip2 cpio dtc expat-devel file flex gawk gcc gcc-c++ gmp-devel gzip gtkwave java-1.8.0-openjdk-headless libmpc-devel libuuid-devel make mpfr-devel patch patchutils perl perl-ExtUtils-MakeMaker python3 python3-pip rsync sed tar tcl texinfo unzip vim-common virtualenv which zlib-devel
 
-We need the `orderedmultidict` Python package too, but it is not packaged for CentOS. Installing it from PyPI works:
-
-    pip install --user orderedmultidict
-
 On CentOS 7, some tools provided by the base repository are too old to satisfy the requirements.
 We suggest using the [Software Collections](https://wiki.centos.org/AdditionalResources/Repositories/SCL)
 (SCL) to obtain newer versions.
@@ -78,6 +74,10 @@ On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CM
 ### Ubuntu
 
     sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave uuid-dev vim-common virtualenv python-yaml
+
+We need the `orderedmultidict` Python package too, but it is not packaged by default. Installing it from PyPI works:
+
+    pip install --user orderedmultidict
 
 BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu for
 development. If not on a relatively recent version of these OSes, we suggest using a
