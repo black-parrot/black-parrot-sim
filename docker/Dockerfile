@@ -1,6 +1,6 @@
 # Dockerfile References: https://docs.docker.com/engine/reference/builder/
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN apt-get update
 
@@ -28,4 +28,5 @@ LABEL maintainer="Mike Patnode <mike@mpsharp.com>"
 
 WORKDIR /home/build/black-parrot-sim
 
-ENTRYPOINT ["sleep", "inf"]
+ENTRYPOINT ["/bin/bash"]
+
