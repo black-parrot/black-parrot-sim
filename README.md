@@ -73,7 +73,7 @@ On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CM
 
 ### Ubuntu
 
-    sudo apt-get install autoconf automake autotools-dev cmake curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave uuid-dev vim-common virtualenv python-yaml
+    sudo apt-get install autoconf automake autotools-dev cmake curl default-jre libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave uuid-dev vim-common virtualenv python-yaml
 
 We need the `orderedmultidict` Python package too, but it is not packaged by default. Installing it from PyPI works:
 
