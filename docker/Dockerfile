@@ -9,7 +9,7 @@ RUN apt-get update
 # to be worth the trouble
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get install -y apt-utils tzdata git vim gettext-base \
-        bash autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk \
+        bash autoconf automake autotools-dev curl cmake libmpc-dev libmpfr-dev libgmp-dev gawk \
         build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev \
         wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev
 
@@ -25,6 +25,8 @@ RUN getent group $GROUP_ID || groupadd --gid $GROUP_ID build
 RUN useradd --no-log-init --uid $USER_ID --gid $GROUP_ID --shell /bin/bash --create-home build
 
 LABEL maintainer="Mike Patnode <mike@mpsharp.com>"
+
+USER build
 
 WORKDIR /home/build/black-parrot-sim
 
