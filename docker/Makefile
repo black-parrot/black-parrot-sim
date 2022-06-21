@@ -2,10 +2,12 @@ TOP ?= $(shell git rev-parse --show-toplevel)
 
 DOCKER         ?= docker
 DOCKER_COMPOSE ?= docker-compose
+#PLATFORM       ?= ubuntu
+PLATFORM       ?= centos7
 
 docker-image:
 	cd $(TOP)/docker; \
-		$(DOCKER) build . -f Dockerfile -t black-parrot-sim --build-arg USER_ID=$(shell id -u) --build-arg GROUP_ID=$(shell id -g) \
+		$(DOCKER) build . -f Dockerfile.$(PLATFORM) -t black-parrot-sim --build-arg USER_ID=$(shell id -u) --build-arg GROUP_ID=$(shell id -g) \
 
 docker-compose:
 	cd $(TOP)/docker; \

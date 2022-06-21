@@ -48,13 +48,13 @@ This should output (roughly)
 
 To install most dependencies, execute the following command:
 
-    sudo yum install autoconf automake bash bc binutils bison bzip2 cpio dtc expat-devel file flex gawk gcc gcc-c++ gmp-devel gzip gtkwave java-1.8.0-openjdk-headless libmpc-devel libuuid-devel make mpfr-devel patch patchutils perl perl-ExtUtils-MakeMaker python3 python3-pip rsync sed tar tcl texinfo unzip vim-common virtualenv which zlib-devel
+    sudo yum install autoconf automake bash bc binutils bison bzip2 cpio dtc expat-devel file flex gawk gcc gcc-c++ git gmp-devel gzip gtkwave java-1.8.0-openjdk-headless libmpc-devel libuuid-devel make mpfr-devel patch patchutils perl perl-ExtUtils-MakeMaker python3 python3-pip rsync sed tar tcl texinfo unzip vim-common virtualenv which zlib-devel
 
 On CentOS 7, some tools provided by the base repository are too old to satisfy the requirements.
 We suggest using the [Software Collections](https://wiki.centos.org/AdditionalResources/Repositories/SCL)
 (SCL) to obtain newer versions.
 
-    sudo yum install centos-release-scl
+    sudo yum install centos-release-scl scl-utils
     sudo yum install devtoolset-9 rh-git218
     scl enable devtoolset-9 rh-git218 bash
 
