@@ -3,9 +3,10 @@
     url = https://github.com/black-parrot/black-parrot/
     ignore = dirty
 [submodule "sdk"]
-	path = sdk
-	url = https://github.com/black-parrot-sdk/black-parrot-sdk
+    path = sdk
+    url = https://github.com/black-parrot-sdk/black-parrot-sdk/
     ignore = dirty
 [submodule "tools"]
-	path = tools
-	url = https://github.com/black-parrot/black-parrot-tools
+    path = tools
+    url = https://github.com/black-parrot/black-parrot-tools/
+    ignore = dirty
