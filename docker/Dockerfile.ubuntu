@@ -11,7 +11,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get install -y apt-utils tzdata git vim gettext-base uuid-dev default-jre \
         bash autoconf automake autotools-dev curl cmake libmpc-dev libmpfr-dev libgmp-dev gawk \
         build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev \
-        wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip
+        wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip \
+        virtualenv
 
 RUN apt-get clean
 
