@@ -1,12 +1,12 @@
-[submodule "rtl"]
-    path = rtl
+[submodule "black-parrot"]
+    path = black-parrot
     url = https://github.com/black-parrot/black-parrot/
     ignore = dirty
-[submodule "sdk"]
-    path = sdk
+[submodule "black-parrot-sdk"]
+    path = black-parrot-sdk
     url = https://github.com/black-parrot-sdk/black-parrot-sdk/
     ignore = dirty
-[submodule "tools"]
-    path = tools
+[submodule "black-parrot-tools"]
+    path = black-parrot-tools
     url = https://github.com/black-parrot/black-parrot-tools/
     ignore = dirty
