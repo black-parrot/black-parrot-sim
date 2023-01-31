@@ -1,8 +1,8 @@
 TOP ?= $(shell git rev-parse --show-toplevel)
 
-export BP_RTL_DIR   := $(TOP)/rtl
-export BP_TOOLS_DIR := $(TOP)/tools
-export BP_SDK_DIR   := $(TOP)/sdk
+export BP_RTL_DIR   := $(TOP)/black-parrot
+export BP_TOOLS_DIR := $(TOP)/black-parrot-tools
+export BP_SDK_DIR   := $(TOP)/black-parrot-sdk
 
 .PHONY: prep prep_bsg bleach_all
 
