@@ -24,9 +24,6 @@ Users who just want to test their setup and run a minimal BlackParrot test shoul
     # For faster builds, make prep_lite -j is parallelizable!
     make prep_lite
 
-    # From here, most operations are handled from within the black-parrot repo
-    cd rtl
-
     # Running your first test
     make -C bp_top/syn tire_kick
 
