@@ -6,10 +6,10 @@ bleeding edge of the BlackParrot RTL and BlackParrot SDK repos. Because this is 
 simulation environment, there's very little else in this repo.
 
 # BlackParrot Repository Overview
-- **rtl/** contains the BlackParrot RTL and basic simulation testbench environment
-- **sdk/** contains the BlackParrot Software Development Kit. More details can be found in the SDK
+- **black-parrot/** contains the BlackParrot RTL and basic simulation testbench environment
+- **black-parrot-sdk/** contains the BlackParrot Software Development Kit. More details can be found in the SDK
   README.md
-- **tools/** contains some open-source tools used to run basic BlackParrot simulations
+- **black-parrot-tools/** contains some open-source tools used to run basic BlackParrot simulations
 - **docker/** contains files needed for a Docker-based simulation environment
 
 # Tire Kick
@@ -24,11 +24,8 @@ Users who just want to test their setup and run a minimal BlackParrot test shoul
     # For faster builds, make prep_lite -j is parallelizable!
     make prep_lite
 
-    # From here, most operations are handled from within the black-parrot repo
-    cd rtl
-
     # Running your first test
-    make -C bp_top/syn tire_kick
+    make -C black-parrot/bp_top/syn tire_kick
 
 This should output (roughly)
 
@@ -111,11 +108,8 @@ Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd blac
     # BSG users should instead use 'make prep_bsg', which sets up the bsg CAD environment
     make prep
 
-    # From here, most operations are handled from within the black-parrot repo
-    cd rtl
-
     # Running your first test
-    make -C bp_top/syn build.sc sim.sc COSIM_P=1
+    make -C black-parrot/bp_top/syn build.sc sim.sc COSIM_P=1
 
 ## Continuing Onward
 
