@@ -2,8 +2,8 @@ TOP ?= $(shell git rev-parse --show-toplevel)
 
 DOCKER         ?= docker
 DOCKER_COMPOSE ?= docker-compose
-PLATFORM       ?= ubuntu
-#PLATFORM      ?= centos7
+PLATFORM       ?= centos7
+#PLATFORM       ?= ubuntu20.04
 
 docker-image:
 	cd $(TOP)/docker; \

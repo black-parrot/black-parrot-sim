@@ -41,6 +41,9 @@ This should output (roughly)
 
 ## Prerequisites
 
+NOTE: These instructions are intended to be up to date, but the Docker images provided in
+this repository work more reliably. If you encounter errors, try out the Docker instructions.
+
 ### CentOS 7+
 
 To install most dependencies, execute the following command:
@@ -52,12 +55,12 @@ We suggest using the [Software Collections](https://wiki.centos.org/AdditionalRe
 (SCL) to obtain newer versions.
 
     sudo yum install centos-release-scl scl-utils
-    sudo yum install devtoolset-9 rh-git218
-    scl enable devtoolset-9 rh-git218 bash
+    sudo yum install devtoolset-11 rh-git218
+    scl enable devtoolset-11 rh-git218 bash
 
 To automatically enable these tools from SCL on new terminals, add the following line to ~/.bashrc:
 
-    source scl_source enable devtoolset-9 rh-git218
+    source scl_source enable devtoolset-11 rh-git218
 
 Moreover, the `cmake` package on CentOS 7 is CMake 2 while we need CMake 3. We suggest installing CMake 3 from EPEL:
 

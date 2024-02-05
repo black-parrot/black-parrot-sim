@@ -6,20 +6,21 @@ FROM ubuntu:20.04
 # There are some potential work-arounds if that turns out to be a problem, but they didn't seem
 # to be worth the trouble
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt update && apt install -y apt-utils tzdata git vim gettext-base uuid-dev default-jre \
+RUN apt-get update && apt-get install -y apt-utils tzdata git vim gettext-base uuid-dev default-jre \
         bash autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk \
         build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev \
         wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip \
         virtualenv help2man tcl8.6-dev libreadline-dev libffi-dev \
         software-properties-common lsb-release
+RUN apt-get install -y python-is-python3
 RUN ln -nsf /usr/bin/tclsh8.6 /usr/bin/tclsh
 
 # Update Cmake
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /etc/apt/trusted.gpg.d/kitware.gpg
 RUN apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" \
-    && apt update && apt install -y cmake
+    && apt-get update && apt-get install -y cmake
 
-RUN apt clean
+RUN apt-get clean
 
 RUN pip install orderedmultidict
 
