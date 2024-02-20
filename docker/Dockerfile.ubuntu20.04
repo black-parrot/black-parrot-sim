@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y apt-utils tzdata git vim gettext-base u
         build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev \
         wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip \
         virtualenv help2man tcl8.6-dev libreadline-dev libffi-dev \
-        software-properties-common lsb-release
+        software-properties-common lsb-release gcc-10 g++-10
 RUN apt-get install -y python-is-python3
 RUN ln -nsf /usr/bin/tclsh8.6 /usr/bin/tclsh
 
