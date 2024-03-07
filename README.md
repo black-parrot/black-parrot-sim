@@ -6,6 +6,7 @@ bleeding edge of the BlackParrot RTL and BlackParrot SDK repos. Because this is 
 simulation environment, there's very little else in this repo.
 
 # BlackParrot Repository Overview
+
 - **black-parrot/** contains the BlackParrot RTL and basic simulation testbench environment
 - **black-parrot-sdk/** contains the BlackParrot Software Development Kit. More details can be found in the SDK
   README.md
@@ -19,11 +20,11 @@ Users who just want to test their setup and run a minimal BlackParrot test shoul
     # Clone the latest repo
     git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
-
+    
     # Install a minimal set of tools and libraries
     # For faster builds, make prep_lite -j is parallelizable!
     make prep_lite
-
+    
     # Running your first test
     make -C black-parrot/bp_top/syn tire_kick
 
@@ -78,6 +79,7 @@ On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CM
     sudo ln -nsf /usr/bin/tclsh8.6 /usr/bin/tclsh
 
 # Update Cmake
+
 Some Ubuntu installations have too old a default CMake, we can update it with the following:
 
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
@@ -102,9 +104,12 @@ For a painless Ubuntu build, download and install [Docker Desktop](https://www.d
     git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
     make -C docker docker-image docker-run
-    # An alternate flow using docker-compose
-    # make -C docker docker-compose
     
+    # An alternate flow using docker-compose
+    git clone https://github.com/black-parrot/black-parrot-sim.git
+    cd ./black-parrot-sim/docker
+    sudo docker-compose build 
+
 Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd black-parrot-sim" or the "Full" directions below.  The repo directory will be mounted inside the container.
 
 ## Build the toolchains
@@ -112,7 +117,7 @@ Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd blac
     # Clone the latest repo
     git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
-
+    
     # make prep is a meta-target which will build the RISC-V toolchains, programs and microcode
     #   needed for a full BlackParrot evaluation setup.
     # Users who are changing code can use the targets in tagged submodules as appropriate
@@ -120,7 +125,7 @@ Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd blac
     # To get started as fast as possible, use 'make prep_lite' which installs a minimal set of tools
     # BSG users should instead use 'make prep_bsg', which sets up the bsg CAD environment
     make prep
-
+    
     # Running your first test
     make -C black-parrot/bp_top/syn build.sc sim.sc COSIM_P=1
 

@@ -31,7 +31,7 @@ ARG GROUP_ID
 RUN getent group $GROUP_ID || groupadd --gid $GROUP_ID build
 
 # Use --no-log-init to deal with large userids creating giant log files
-RUN useradd --no-log-init --uid $USER_ID --gid $GROUP_ID --shell /bin/bash --create-home build
+RUN useradd --no-log-init  --user-group --shell /bin/bash --create-home build
 
 LABEL maintainer="Mike Patnode <mike@mpsharp.com>"
 
