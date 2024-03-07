@@ -12,8 +12,6 @@ docker-image:
 docker-compose:
 	cd $(TOP)/docker; \
 	$(DOCKER_COMPOSE) build --build-arg USER_ID=$(shell id -u) --build-arg GROUP_ID=$(shell id -g) black-parrot-sim
-	$(DOCKER_COMPOSE) up -d
-	$(DOCKER_COMPOSE) exec bp su - build
 
 docker-run:
 	cd $(TOP); \

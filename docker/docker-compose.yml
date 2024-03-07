@@ -4,13 +4,13 @@ version: '3'
 
 # Define services
 services:
-
-  # App Service
-  bp:
-    # Configuration for building the docker image for the service
-    build:
-      context: . # Use an image built from the specified dockerfile in the current directory.
-      dockerfile: Dockerfile.ubuntu
-    volumes:
-      - .:/home/build/black-parrot
+    # App Service
+    black-parrot-sim:
+        image: black-parrot-sim
+        # Configuration for building the docker image for the service
+        build:
+            context: . # Use an image built from the specified dockerfile in the current directory.
+            dockerfile: Dockerfile.ubuntu20.04
+        volumes:
+            - .:/home/build/black-parrot-sim
 
