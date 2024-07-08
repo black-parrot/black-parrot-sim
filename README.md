@@ -73,7 +73,7 @@ On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CM
 
 ### Ubuntu
 
-    sudo apt-get install apt-utils tzdata git vim gettext-base uuid-dev default-jre bash autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip virtualenv help2man tcl8.6-dev libreadline-dev libffi-dev software-properties-common lsb-release
+    sudo apt-get install apt-utils tzdata git vim gettext-base uuid-dev default-jre bash autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip virtualenv help2man tcl8.6-dev libreadline-dev libffi-dev software-properties-common lsb-release python-dev
     # Some ubuntu distros do not provide a default symlink here
     sudo ln -nsf /usr/bin/tclsh8.6 /usr/bin/tclsh
 
