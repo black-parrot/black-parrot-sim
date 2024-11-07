@@ -1,0 +1,21 @@
+
+docker-image: ## creates a black-parrot-sim docker image
+	@$(eval USER_ID := $(shell id -u))
+	@$(eval GROUP_ID := $(shell id -g))
+	@$(eval CONTAINER_NAME := black-parrot-sim)
+	@$(CD) $(BP_SIM_DOCKER_DIR); \
+		$(DOCKER) build . -f Dockerfile.$(DOCKER_PLATFORM) \
+		--build-arg USER_ID=$(USER_ID) \
+		--build-arg GROUP_ID=$(GROUP_ID) \
+		-t $(CONTAINER_NAME)
+
+docker-run: ## mounts black-parrot-sim as a docker image
+	@$(eval USER_ID := $(shell id -u))
+	@$(eval GROUP_ID := $(shell id -g))
+	@$(eval CONTAINER_NAME := black-parrot-sim)
+	$(CD) $(BP_SIM_DIR); \
+		$(DOCKER) run \
+			--volume=$(BP_SIM_DIR):/home/build/black-parrot-sim \
+			--user $(USER_ID):$(GROUP_ID) \
+			-it $(CONTAINER_NAME)
+
