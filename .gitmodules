@@ -2,11 +2,14 @@
     path = black-parrot
     url = https://github.com/black-parrot/black-parrot/
     branch = master
+    ignore = dirty
 [submodule "black-parrot-sdk"]
     path = black-parrot-sdk
     url = https://github.com/black-parrot-sdk/black-parrot-sdk/
     branch = master
+    ignore = dirty
 [submodule "black-parrot-tools"]
     path = black-parrot-tools
     url = https://github.com/black-parrot/black-parrot-tools/
     branch = master
+    ignore = dirty
