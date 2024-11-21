@@ -25,7 +25,7 @@ Users who just want to test their setup and run a minimal BlackParrot test shoul
     make prep_lite
 
     # Running your first test
-    make -C black-parrot/bp_top/syn tire_kick
+    make -C black-parrot/bp_top/syn build.verilator sim.verilator
 
 This should output (roughly)
 
@@ -101,7 +101,7 @@ For a painless Ubuntu build, download and install [Docker Desktop](https://www.d
 
     git clone https://github.com/black-parrot/black-parrot-sim.git
     cd black-parrot-sim
-    make -C docker docker-image docker-run
+    make docker-image docker-run
     
 Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd black-parrot-sim" or the "Full" directions below.  The repo directory will be mounted inside the container.
 
@@ -120,7 +120,7 @@ Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd blac
     make prep
 
     # Running your first test
-    make -C black-parrot/bp_top/syn build.sc sim.sc COSIM_P=1
+    make -C black-parrot/bp_top/syn build.verilator sim.verilator COSIM_P=1
 
 ## Continuing Onward
 
