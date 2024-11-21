@@ -1,0 +1,129 @@
+#############################
+# Makefile functions
+#############################
+# Saves initial values so that we can filter them later
+VARS_OLD := $(.VARIABLES)
+
+define bsg_fn_upper
+$(shell echo $(1) | tr a-z A-Z)
+endef
+define bsg_fn_lower
+$(shell echo $(1) | tr A-Z a-z)
+endef
+bsg_var_blank :=
+define bsg_var_newline
+
+$(bsg_var_blank)
+endef
+
+bsg_var_percent := %
+
+define bsg_fn_patch_if_new
+	$(eval apply_stage_patch := git apply --ignore-whitespace --ignore-space-change)
+	$(eval apply_commit_patch := git am --ignore-whitespace --ignore-space-change)
+	$(eval check_patch := $(apply_stage_patch) --check --reverse)
+	$(eval src_root := $(1))
+	$(eval patch_root := $(2))
+	$(eval patch_list := $(wildcard $(patch_root)/*.patch))
+	$(eval patch_is_top := $(findstring patches,$(lastword $(subst /, ,$(dir $(patch_root))))))
+	for p in $(patch_list); \
+	do \
+		echo "Checking if patch $$p is applicable"; \
+		cd $(src_root); $(check_patch) $$p && continue; \
+		echo "Patch is unapplied..."; \
+		if [ ! -z "$$patch_is_top" ]; then \
+		echo "Applying patch to sub-directory $(src_root);" \
+		cd $(src_root); $(apply_commit_patch) $$p; \
+		echo "Patch applied!"; \
+		else \
+		echo "Applying patch to top-level $(src_root);" \
+		cd $(src_root); $(apply_stage_patch) $$p; \
+		echo "Patch applied!"; \
+		fi \
+	done
+endef
+
+define bsg_fn_build_tag
+	$(eval name := $(1))
+	$(eval src_dir := $(2))
+	$(eval touch_dir := $(3))
+	$(eval tag := $(4))
+	$(eval internal_target := $(src_dir)/.$(name)_build)
+	$(eval external_target := build.$(name))
+	$(eval rebuild_target := rebuild.$(name))
+$(external_target): | $(tag)
+$(rebuild_target):
+	rm -f $(touch_dir)/$(name).*
+	+$(MAKE) $(tag)
+$(tag):
+	+$(MAKE) $(internal_target)
+	touch $(tag)
+endef
+
+define bsg_fn_build_if_missing
+	$(eval name := $(1))
+	$(eval src_dir := $(2))
+	$(eval touch_dir := $(3))
+	$(eval tag := $(addprefix $(touch_dir)/$(name).,any))
+	$(call bsg_fn_build_tag,$(name),$(src_dir),$(touch_dir),$(tag))
+endef
+
+define bsg_fn_build_if_new
+	$(eval name := $(1))
+	$(eval src_dir := $(2))
+	$(eval touch_dir := $(3))
+	$(eval hash := $(shell cd $(src_dir); git rev-parse HEAD))
+	$(eval tag := $(addprefix $(touch_dir)/$(name).,$(hash)))
+	$(call bsg_fn_build_tag,$(name),$(src_dir),$(touch_dir),$(tag))
+endef
+
+
+define bsg_fn_info
+	$(eval $@_msg = $(1))
+	$(eval $@_prefix = "BSG-INFO: ")
+	echo "${$@_prefix} ${$@_msg}";
+endef
+
+define bsg_fn_warn
+	$(eval $@_msg = $(1))
+	$(eval $@_prefix = "BSG-WARN: ")
+	echo "${$@_prefix} ${$@_msg}";
+endef
+
+define bsg_fn_error
+	$(eval $@_msg = $(1))
+	$(eval $@_prefix = "BSG-ERROR: ")
+	echo "${$@_prefix} ${$@_msg}"; \
+	exit -1;
+endef
+
+# Global Makefile settings
+SHELL := /bin/bash
+MAKEFLAGS += --warn-undefined-variables
+
+# Global help target
+.DEFAULT_GOAL: help
+.PHONY: help
+help: ## prints this message
+	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort \
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m  %-30s\033[0m %s\n", $$1, $$2}'
+
+# Global reset
+.PHONY: bleach_all
+bleach_all: ## wipes the whole repo clean. Use with caution
+	@cd $(TOP); git clean -ffdx; git submodule deinit -f .
+
+#############################
+# Paths
+#############################
+BP_SIM_DIR         ?= $(TOP)
+BP_SIM_MK_DIR      ?= $(BP_SIM_DIR)/mk
+BP_SIM_RTL_DIR     ?= $(BP_SIM_DIR)/black-parrot
+BP_SIM_TOOLS_DIR   ?= $(BP_SIM_DIR)/black-parrot-tools
+BP_SIM_SDK_DIR     ?= $(BP_SIM_DIR)/black-parrot-sdk
+BP_SIM_DOCKER_DIR  ?= $(BP_SIM_DIR)/docker
+BP_SIM_INSTALL_DIR ?= $(BP_SIM_DIR)/install
+BP_SIM_TOUCH_DIR   ?= $(BP_SIM_INSTALL_DIR)/touchfiles
+
+BSG_CADENV_DIR ?= $(BP_SIM_DIR)/install/bsg_cadenv
+
