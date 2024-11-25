@@ -111,7 +111,7 @@ help: ## prints this message
 # Global reset
 .PHONY: bleach_all
 bleach_all: ## wipes the whole repo clean. Use with caution
-	@cd $(TOP); git clean -ffdx; git submodule deinit -f .
+	@cd $(BP_SIM_DIR); git clean -ffdx; git submodule deinit -f .
 
 #############################
 # Paths
@@ -126,4 +126,7 @@ BP_SIM_INSTALL_DIR ?= $(BP_SIM_DIR)/install
 BP_SIM_TOUCH_DIR   ?= $(BP_SIM_INSTALL_DIR)/touchfiles
 
 BSG_CADENV_DIR ?= $(BP_SIM_DIR)/install/bsg_cadenv
+
+# Exported for historical reasons, remove later
+export BP_SDK_DIR := $(BP_SIM_SDK_DIR)
 
