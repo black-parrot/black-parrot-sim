@@ -1,128 +1,96 @@
 # BlackParrot Simulation Environment
 
 This repository is the main development meta-repository of the BlackParrot processor
-[BlackParrot](https://www.github.com/black-parrot/black-parrot). It should track close to the
-bleeding edge of the BlackParrot RTL and BlackParrot SDK repos. Because this is a low-level
-simulation environment, there's very little else in this repo.
+[BlackParrot](https://www.github.com/black-parrot/black-parrot).
+It should track close to the bleeding edge of the BlackParrot RTL and BlackParrot SDK repos.
+Because this is a bare simulation environment, there's very little else in this repo.
 
-# BlackParrot Repository Overview
-- **black-parrot/** contains the BlackParrot RTL and basic simulation testbench environment
-- **black-parrot-sdk/** contains the BlackParrot Software Development Kit. More details can be found in the SDK
-  README.md
-- **black-parrot-tools/** contains some open-source tools used to run basic BlackParrot simulations
+## Repository Overview
+
+- **black-parrot/** contains the BlackParrot RTL and basic simulation environment
+- **black-parrot-sdk/** contains the BlackParrot Software Development Kit
+- **black-parrot-tools/** contains open-source tools used to augment BlackParrot simulations
 - **docker/** contains files needed for a Docker-based simulation environment
 
-# Tire Kick
+For most users, the following makefile targets will be the most useful:
 
-Users who just want to test their setup and run a minimal BlackParrot test should run the following:
+    make prep_lite;     # minimal set of simulation preparation
+    make prep;          # standard preparation
+    make prep_bsg;      # additional preparation for BSG users
 
-    # Clone the latest repo
-    git clone https://github.com/black-parrot/black-parrot-sim.git
-    cd black-parrot-sim
+There are also common Makefile targets to maintain the repository:
 
-    # Install a minimal set of tools and libraries
-    # For faster builds, make prep_lite -j is parallelizable!
-    make prep_lite
+    make checkout;       # checkout submodules. Should be done before building tools
+    make help;           # prints information about documented targets
+    make bleach_all;     # wipes the whole repo clean. Use with caution
 
-    # Running your first test
-    make -C black-parrot/bp_top/syn build.verilator sim.verilator
+And some lesser tested, maintenance operations
 
-This should output (roughly)
+    make clean;          # cleans up submodule working directory
+    make tidy;           # unpatches submodules
+    make bleach;         # deinitializes submodules
 
-    Hello world!
-    [CORE0 FSH] PASS
-    [CORE0 STATS]
-        clk   :                  220
-        instr :                   66
-        mIPC  :                  300
-    All cores finished! Terminating...
+## Getting Started
 
-# Getting Started
-
-## Prerequisites
-
-NOTE: These instructions are intended to be up to date, but the Docker images provided in
-this repository work more reliably. If you encounter errors, try out the Docker instructions.
-
-### CentOS 7+
-
-To install most dependencies, execute the following command:
-
-    sudo yum install autoconf automake bash bc binutils bison bzip2 cpio dtc expat-devel file flex gawk gcc gcc-c++ git gmp-devel gzip gtkwave java-11-openjdk-headless libmpc-devel libuuid-devel make mpfr-devel patch patchutils perl perl-ExtUtils-MakeMaker python3 python3-pip rsync sed tar tcl tcl-devel  tk tk-devel texinfo unzip vim vim-common virtualenv which zlib-devel help2man readline-devel libreadline-devel libffi-devel wget openssl-devel epel-release centos-release-scl scl-utils
-
-On CentOS 7, some tools provided by the base repository are too old to satisfy the requirements.
-We suggest using the [Software Collections](https://wiki.centos.org/AdditionalResources/Repositories/SCL)
-(SCL) to obtain newer versions.
-
-    sudo yum install centos-release-scl scl-utils
-    sudo yum install devtoolset-11 rh-git218
-    scl enable devtoolset-11 rh-git218 bash
-
-To automatically enable these tools from SCL on new terminals, add the following line to ~/.bashrc:
-
-    source scl_source enable devtoolset-11 rh-git218
-
-Moreover, the `cmake` package on CentOS 7 is CMake 2 while we need CMake 3. We suggest installing CMake 3 from EPEL:
-
-    sudo yum install epel-release
-    sudo yum install cmake3
-
-On CentOS 8 and later, the `cmake` package is CMake 3 and works well without `CMAKE=cmake3`:
-
-    sudo yum install cmake
-
-### Ubuntu
-
-    sudo apt-get install apt-utils tzdata git vim gettext-base uuid-dev default-jre bash autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev wget byacc device-tree-compiler python gtkwave python-yaml pkg-config swig python3-dev pip virtualenv help2man tcl8.6-dev libreadline-dev libffi-dev software-properties-common lsb-release
-    # Some ubuntu distros do not provide a default symlink here
-    sudo ln -nsf /usr/bin/tclsh8.6 /usr/bin/tclsh
-
-# Update Cmake
-Some Ubuntu installations have too old a default CMake, we can update it with the following:
-
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-    sudo apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" && sudo apt update && sudo apt install -y cmake
-
-### Other Prerequisites
-
-We need the `orderedmultidict` Python package too, but it is not packaged by default. Installing it from PyPI works:
-
-    pip install --user orderedmultidict
-
-BlackParrot has been tested extensively on CentOS 7. We have many users who have used Ubuntu for
-development. If not on a relatively recent version of these OSes, we suggest using a
-Docker image.
-
-Ubuntu on Windows WSL 2.0 seems to work for most things, but you may encounter errors with more complex operations. For instance, compiling Linux is known not to work in this environment. This is considered an experimental build.
-
-### Docker build
-
-For a painless Ubuntu build, download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) then run the following:
-
-    git clone https://github.com/black-parrot/black-parrot-sim.git
-    cd black-parrot-sim
-    make docker-image docker-run
-    
-Then follow the [Tire Kick](#-tire-kick) directions above starting with "cd black-parrot-sim" or the "Full" directions below.  The repo directory will be mounted inside the container.
-
-## Build the toolchains
+make prep is a meta-target which will build the RISC-V toolchains, programs and microcode.
+This will prepare everything needed for a full BlackParrot evaluation setup.
+Users who are changing code can use the targets in tagged submodules as appropriate.
+To get started as fast as possible, use 'make prep\_lite' which installs a minimal set of tools.
+BSG users should instead use 'make prep\_bsg', which sets up the bsg CAD environment.
 
     # Clone the latest repo
     git clone https://github.com/black-parrot/black-parrot-sim.git
-    cd black-parrot-sim
-
-    # make prep is a meta-target which will build the RISC-V toolchains, programs and microcode
-    #   needed for a full BlackParrot evaluation setup.
-    # Users who are changing code can use the targets in tagged submodules as appropriate
+    make -C black-parrot-sim checkout
     # For faster builds, make prep -j is parallelizable!
-    # To get started as fast as possible, use 'make prep_lite' which installs a minimal set of tools
-    # BSG users should instead use 'make prep_bsg', which sets up the bsg CAD environment
-    make prep
+    make -C black-parrot-sim prep
+
+## Run Your First Test
+
+Make sure your setup has completed successfully:
 
     # Running your first test
-    make -C black-parrot/bp_top/syn build.verilator sim.verilator COSIM_P=1
+    make -C black-parrot-sim/black-parrot/bp_top/verilator build.verilator sim.verilator
+
+which should output (roughly):
+
+    Hello World!
+    [CORE FSH] PASS
+        terminating...
+    [BSG-PASS]
 
 ## Continuing Onward
 
-Additional documentation is available in the main BlackParrot repo, in the Simulation Guide:
-[BlackParrot](https://github.com/black-parrot/black-parrot)
+Additional documentation is available in the main BlackParrot repo: [BlackParrot](https://github.com/black-parrot/black-parrot)
+
+## Docker Containerization
+
+We provide Dockerfiles in docker/ to (mostly) match our internal build environments.
+For performance, it is best to run natively if possible.
+However, these are considered "self-documenting" examples of how to build these environments from scratch.
+We also play clever tricks to allow users to mount the current repo in the image so that permissions are passed through.
+
+
+    # Set the appropriate flags for your docker environment:
+    #   DOCKER_PLATFORM: OS for the base image (e.g. ubuntu24.04, ...)
+    #   USE_LOCAL_CREDENTIALS: whether to create the docker volume with your local uid/gid
+    make -C docker docker-image; # creates a black-parrot-tools docker image
+    make -C docker docker-run;   # mounts black-parrot-tools as a docker container
+
+## Issues
+
+For maintenance tractability we provide very limited support for this repository.
+Please triage build problems to see if they are with this repo or with the submodules within.
+
+Issue categories we appreciate:
+  - Makefile bugs / incompatibilities
+  - Dockerfile bugs / incompatibilities
+  - OS-specific build tweaks
+  - Upstream links breaking
+
+## PRs
+
+We will gratefully accept PRs for:
+  - Submodule bumps
+  - New OS support through Dockerfiles (along with necessary Makefile changes)
+  - GitLab CI enhancements
+

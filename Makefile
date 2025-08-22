@@ -1,10 +1,8 @@
 TOP ?= $(shell git rev-parse --show-toplevel)
+include $(TOP)/Makefile.common
+include $(TOP)/Makefile.env
 
-BP_RTL_DIR   ?= $(TOP)/black-parrot
-BP_SDK_DIR   ?= $(TOP)/black-parrot-sdk
-BP_TOOLS_DIR ?= $(TOP)/black-parrot-tools
-
-checkout:
+checkout::
 	@$(MAKE) -C $(BP_RTL_DIR) checkout
 	@$(MAKE) -C $(BP_TOOLS_DIR) checkout
 	@$(MAKE) -C $(BP_SDK_DIR) checkout
