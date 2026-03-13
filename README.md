@@ -32,6 +32,25 @@ And some lesser tested, maintenance operations
 
 ## Getting Started
 
+### System Dependencies
+
+The full list of required system packages is maintained in
+[docker/Dockerfile.ubuntu24.04](docker/Dockerfile.ubuntu24.04).
+
+If you are setting up the environment without Docker, you may need to install
+packages listed there manually. Commonly missing tools on fresh Ubuntu systems
+include:
+
+- help2man
+- cmake
+- gawk
+- texinfo
+
+If you encounter errors such as `help2man: command not found`,
+`cmake: command not found`, or `configure: error: GNU Awk not found`,
+install the corresponding package and rerun `make prep`.
+
+
 make prep is a meta-target which will build the RISC-V toolchains, programs and microcode.
 This will prepare everything needed for a full BlackParrot evaluation setup.
 Users who are changing code can use the targets in tagged submodules as appropriate.
