@@ -32,6 +32,14 @@ And some lesser tested, maintenance operations
 
 ## Getting Started
 
+### Prerequisites
+
+As a meta-repository, there are many downstream dependencies for each of the aggregated tools.
+We do not attempt to document them here, but we do provide example Docker containers.
+See [Docker Containerization](docker-containerization) for more information.
+
+### Commands
+
 make prep is a meta-target which will build the RISC-V toolchains, programs and microcode.
 This will prepare everything needed for a full BlackParrot evaluation setup.
 Users who are changing code can use the targets in tagged submodules as appropriate.
